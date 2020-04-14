@@ -4,7 +4,8 @@
 ###########################
 
 # Imports
-import pygame 
+import pygame
+import time
 
 # Colors
 black = (0, 0, 0)
@@ -38,6 +39,20 @@ def background():
 
     pygame.draw.line(display, white, (1,75), (800, 75), 5)
 
+def text_object(msg, font, color):
+    text_surface = font.render(msg, True, color)
+    return text_surface, text_surface.get_rect()
+
+def text_display(msg):
+    text = pygame.font.Font('freesansbold.ttf', 60)
+    text_surf, text_rect = text_object(msg, text, white)
+    text_rect.center = ((display_width / 2), (35))
+    display.blit(text_surf, text_rect)
+
+    pygame.display.update()
+    time.sleep(2)
+    program_run()
+
 def program_run():
     while True:
         for event in pygame.event.get():
@@ -45,17 +60,20 @@ def program_run():
                 print(event)
                 program_exit()
             
-        # Graphics
+        # GUI
         background()
+        text_display("Audio Files") # Main Header
 
+        # Update Display
         pygame.display.update()
         clock.tick(60)
 
 # Execute
 if __name__ == "__main__":
     print("Program Start")
+    print("-------------")
     program_run()
 else:
     print("Program Terminated Due to an Error")
-    print("")
+    print("-------------")
     program_exit()
