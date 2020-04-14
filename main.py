@@ -4,54 +4,44 @@
 ###########################
 
 # Imports
-import pygame
-
-# Set up
-pygame.init()
-
-display_width = 800
-display_height = 600
-display = pygame.display.set_mode((display_width, display_height))
-
-# clock = pygame.time.Clock()
-
-icon = pygame.image.load('icon.png')
-
-pygame.display.set_caption("Music Player")
-# pygame.display.set_icon(icon)
+import pygame 
 
 # Colors
 black = (0, 0, 0)
 white = (255, 255, 255)
-red = (255, 0, 0)
-green = (0, 255, 0)
-blue = (0, 0, 255)
+
+# Set Up
+pygame.init()
+
+display_width = 800
+display_height = 600
+
+display = pygame.display.set_mode((display_width, display_height))
+
+# clock = pygame.time.Clock()
 
 # Meat
-def program_exit():
+def exit_program():
     pygame.quit()
     quit()
 
-def background():
+def image():
     display.fill(white)
 
-
-
-def run_program(): # Main display loop. The thing that renders other things.
-    # Program Loop
+def program_run():
     while True:
-        for event in pygame.event.get(): 
+        for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                print(event)
-                program_exit()
+                exit_program()
+            
+        # Graphics
+        image()
 
-    # Background
-    background()
+        pygame.display.update()
 
-    # Updates Display
-    pygame.display.update()
-    #clock.tick(60)
+# Execute
+program_run()
 
-# Run Program
-if __name__ == "__main__":
-    run_program()
+# Quit
+pygame.quit()
+quit()
